@@ -1,8 +1,6 @@
 # ActiveCampaignV3Api
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/active_campaign_v3_api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is created as a wrapper in order to utilize the latest features from ActiveCampaign's v3 API. Refer to https://developers.activecampaign.com/reference for documentation.
 
 ## Installation
 
@@ -20,9 +18,121 @@ Or install it yourself as:
 
     $ gem install active_campaign_v3_api
 
+## TODOs
+
+Note: this gem is still under heavy development. The following is the current progress of development
+
+- ADDRESSES
+  + [ ] Addresses
+- AUTOMATIONS
+  + [ ] Automations
+- BRANDING
+  + [ ] Branding
+- CALENDAR FEEDS
+  + [ ] Calendar Feeds
+- CAMPAIGNS
+  + [ ] Campaigns
+  + [ ] Messages
+- CONTACTS
+  + [ ] Contacts
+  + [ ] Automations
+  + [ ] Customs Fields
+  + [ ] Custom Field Values
+  + [ ] Tags
+- DEALS
+  + [ ] Deals
+  + [ ] Pipelines
+  + [ ] Stages
+  + [ ] Custom Deal Fields
+  + [ ] Custom Deal Fields Values
+  + [ ] Secondary Contract
+- DEEP DATA INTEGRATIONS
+  - [ ] Connections
+  - [ ] E-Commerce Abandoned Carts
+  - [ ] E-Commerce Customers
+  - [ ] E-Commerce Orders
+- FORMS
+  - [ ] Forms
+- LISTS
+  - [ ] Lists
+- NOTES
+  - [ ] Notes
+- ORGANIZATIONS
+  - [ ] Organizations
+- SAVED RESPONSES
+  - [ ] Saved Responses
+- SCORES
+  - [ ] Scores
+- SEGMENTS
+  - [ ] Segments
+- SETTINGS
+  - [ ] Settings
+- SITE & EVENT TRACKING
+  - [ ] Event Tracking
+  - [ ] Site Tracking
+- TAGS
+  - [ ] Tags
+- TASKS
+  - [ ] Tasks
+- TASK TYPES
+  - [ ] Task Types
+- TEMPLATES
+  - [ ] Templates
+- USERS
+  - [ ] Users
+  - [x] Groups
+- WEBHOOKS
+  - [ ] Webhooks
+
 ## Usage
 
-TODO: Write usage instructions here
+Instantiate the client by the following
+```
+client = ActiveCampaignV3Api::Client.new(api_token: <YOUR_API_TOKEN>, account_id: <YOUR_ACCOUNT_ID>
+```
+
+Your account ID is the ID that was associated with your account.
+
+While your API Token can be found under `Settings` > `Developer` (Alternatively you can visit https://<YOUR_ACCOUNT_ID>.activehosted.com/app/settings/developer)
+
+After that, refer to the documentations for the method's name. For example, if you want to create a group. Refer to the document here: https://developers.activecampaign.com/reference#groups . The method name is take from the endpoint's title and converted into snakecase (e.g. "Create a group" -> "create_a_group")
+
+Therefore you can call the method by
+
+```
+client.create_a_group(data)
+```
+
+The number of arguments needed for each method will be dependent on the endpoint that was being called.
+
+1. If the endpoint does not require id and data, then there will be no argument
+Example: https://developers.activecampaign.com/reference#list-all-groups
+
+```
+client.list_all_groups
+```
+
+2. If the endpoint require only id, then there will be 1 argument
+
+```
+id = 1
+client.retrieve_a_group(id)
+```
+
+3. If the endpoint require only data, then there will be 1 argument
+
+```
+data = { group: { title: 'Testing' } }
+client.retrieve_a_group(data)
+```
+
+4. If the endpoint require both id and data, then there will be 2 arguments. Id will be the first followed by Data
+
+```
+id = 1
+data = { group: { title: 'Testing' } }
+client.update_a_group(id, data)
+```
 
 ## Development
 
